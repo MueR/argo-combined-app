@@ -61,10 +61,10 @@ spec:
       analysis:
         templates:
         - templateName: argo-combined-app
+          args:
+          - name: service-name
+            value: "argo-combined-app-canary.production.svc.cluster.local"
         startingStep: 2
-        args:
-        - name: serviceName
-          value: "argo-combined-app-canary.production.svc.cluster.local"
 
 ---
 
@@ -74,7 +74,7 @@ metadata:
   name: argo-combined-app
 spec:
   args:
-  - name: serviceName
+  - name: service-name
   metrics:
   - name: success-rate
     interval: 10s
@@ -88,13 +88,13 @@ spec:
           sum(irate(
             istio_requests_total{  
               reporter="source",
-              destination_service=~"{{args.serviceName}}",
+              destination_service=~"{{args.service-name}}",
               response_code=~"2.*"
             }[2m]
           )) / sum(irate(
             istio_requests_total{
               reporter="source",
-              destination_service=~"{{args.serviceName}}"
+              destination_service=~"{{args.service-name}}"
             }[2m]
           ))
   - name: avg-req-duration
