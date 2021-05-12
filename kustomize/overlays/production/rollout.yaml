@@ -61,10 +61,10 @@ spec:
       analysis:
         templates:
         - templateName: argo-combined-app
+        startingStep: 2
         args:
         - name: service-name
-          value: "argo-combined-app-canary.production.svc.cluster.local"
-        startingStep: 2
+          value: argo-combined-app-canary.production.svc.cluster.local
 
 ---
 
