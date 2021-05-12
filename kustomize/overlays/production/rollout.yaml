@@ -63,7 +63,7 @@ spec:
         - templateName: argo-combined-app
         startingStep: 2
         args:
-        - name: service-name
+        - name: success-rate
           value: "argo-combined-app-canary.production.svc.cluster.local"
 
 ---
@@ -71,7 +71,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: AnalysisTemplate
 metadata:
-  name: argo-combined-app
+  name: success-rate
 spec:
   args:
   - name: service-name
