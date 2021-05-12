@@ -60,21 +60,21 @@ spec:
       - pause: {duration: 30s}
       analysis:
         templates:
-        - templateName: success-rate
+        - templateName: argo-combined-app
         startingStep: 2
-        args:
-        - name: service-name
-          value: "argo-combined-app-canary.production.svc.cluster.local"
+        # args:
+        # - name: service-name
+        #   value: "argo-combined-app-canary.production.svc.cluster.local"
 
 ---
 
 apiVersion: argoproj.io/v1alpha1
 kind: AnalysisTemplate
 metadata:
-  name: success-rate
+  name: argo-combined-app
 spec:
-  args:
-  - name: service-name
+  # args:
+  # - name: service-name
   metrics:
   - name: success-rate
     interval: 10s
