@@ -60,7 +60,7 @@ spec:
       - pause: {duration: 30s}
       analysis:
         templates:
-        - templateName: success-rate
+        - templateName: argo-combined-app
         startingStep: 2
         args:
         - name: service-name
