@@ -64,22 +64,7 @@ spec:
         startingStep: 2
         args:
         - name: service-name
-          value: argo-combined-app-canary.production.svc.cluster.local
-
-      #   - templateName: success-rate
-      #   startingStep: 2 # delay starting analysis run until setWeight: 40%
-      #   args:
-      #   - name: service-name
-      #     value: guestbook-svc.default.svc.cluster.local
-      # steps:
-      # - setWeight: 20
-      # - pause: {duration: 10m}
-      # - setWeight: 40
-      # - pause: {duration: 10m}
-      # - setWeight: 60
-      # - pause: {duration: 10m}
-      # - setWeight: 80
-      # - pause: {duration: 10m}
+          value: "argo-combined-app-canary.production.svc.cluster.local"
 
 ---
 
@@ -112,26 +97,26 @@ spec:
               destination_service=~"{{args.service-name}}"
             }[2m]
           ))
-  - name: avg-req-duration
-    interval: 10s
-    successCondition: result[0] <= 1000
-    failureCondition: result[0] > 1000
-    failureLimit: 3
-    provider:
-      prometheus:
-        address: http://prometheus-server.monitoring
-        query: |
-          sum(irate(
-            istio_request_duration_milliseconds_sum{
-              reporter="source",
-              destination_service=~"{{args.service-name}}"
-            }[2m]
-          )) / sum(irate(
-            istio_request_duration_milliseconds_count{
-              reporter="source",
-              destination_service=~"{{args.service-name}}"
-            }[2m]
-          ))
+  # - name: avg-req-duration
+  #   interval: 10s
+  #   successCondition: result[0] <= 1000
+  #   failureCondition: result[0] > 1000
+  #   failureLimit: 3
+  #   provider:
+  #     prometheus:
+  #       address: http://prometheus-server.monitoring
+  #       query: |
+  #         sum(irate(
+  #           istio_request_duration_milliseconds_sum{
+  #             reporter="source",
+  #             destination_service=~"{{args.service-name}}"
+  #           }[2m]
+  #         )) / sum(irate(
+  #           istio_request_duration_milliseconds_count{
+  #             reporter="source",
+  #             destination_service=~"{{args.service-name}}"
+  #           }[2m]
+  #         ))
       
 ---
 
