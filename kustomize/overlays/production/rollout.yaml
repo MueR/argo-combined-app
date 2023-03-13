@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: argo-combined-app
-        image: vfarcic/argo-combined-app
+        image: hub.openticket.tech/gitops/demo-app
         ports:
         - containerPort: 80
         livenessProbe:
@@ -46,11 +46,8 @@ spec:
       canaryService: argo-combined-app-canary
       stableService: argo-combined-app
       trafficRouting:
-        istio:
-          virtualService:
-            name: argo-combined-app
-            routes:
-            - primary
+        traefik:
+          weightedTraefikServiceName: argo-combined-app-service
       steps:
       - setWeight: 10
       - pause: {duration: 2m}
@@ -58,10 +55,10 @@ spec:
       - pause: {duration: 30s}
       - setWeight: 50
       - pause: {duration: 30s}
-      analysis:
-        templates:
-        - templateName: argo-combined-app
-        startingStep: 2
+#      analysis:
+#        templates:
+#        - templateName: argo-combined-app
+#        startingStep: 2
         # args:
         # - name: service-name
         #   value: "argo-combined-app-canary.production.svc.cluster.local"
