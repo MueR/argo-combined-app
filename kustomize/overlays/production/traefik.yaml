@@ -27,4 +27,4 @@ spec:
     - kind: Rule
       match: Host(`argo-combined-app.local`) || Host(`argo-combined-app.prod-00.openticket.tech`)
       services:
-        - name: argo-compbined-app
+        - name: argo-combined-app
