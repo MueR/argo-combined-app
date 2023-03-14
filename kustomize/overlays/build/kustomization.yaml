@@ -4,5 +4,5 @@ resources:
 - ../../base
 - deployment.yaml
 - ingress.yaml
-namespace: staging
+namespace: build
 

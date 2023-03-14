@@ -2,6 +2,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: TraefikService
 metadata:
   name: argo-combined-app-service
+  namespace: argo-combined-app
   labels:
     app: argo-combined-app
 spec:
