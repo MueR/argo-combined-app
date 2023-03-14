@@ -5,5 +5,5 @@ resources:
 - hpa.yaml
 - traefik.yaml
 - rollout.yaml
-namespace: simple-web-app
+namespace: production
 
