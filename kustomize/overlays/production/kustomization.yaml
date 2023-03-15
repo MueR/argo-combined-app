@@ -1,9 +1,0 @@
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-resources:
-- ../../base
-- hpa.yaml
-- traefik.yaml
-- rollout.yaml
-namespace: argo-combined-app
-
